@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href ="/css/base.css">
+        <link rel="stylesheet" href ="/css/category.css">
+
+        <script src="/js/category.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    </head>
+
+    <body>
+
+        <script id="products_template" type="text/x-handlebars-template">
+
+            {{#each this}}
+                <article class="product">
+                    <img src="{{this.image}}" alt="image">
+                    <p id = "product_code">Product's Code {{this.id}}</p>
+                    <p>{{this.title}}</p>
+                    <p>Price {{this.cost}} €</p>
+                    <button class = "expand_desc_button" data-product-id="{{this.id}}">view description</button>
+                    <p id ="fully_description_{{this.id}}" class="description">{{this.description}}</p>
+                    
+                    <button class = "add_to_cart" data-prod-id = "{{this.id}}" data-prod-title = "{{this.title}}" 
+                                                  data-prod-cost ="{{this.cost}}"> 
+                        <p>add to cart</p> 
+                        <img src="images/cart.png" alt="">
+                    </button>
+
+                </article>
+            {{/each}}
+
+        </script>
+
+        <script id="filters_template" type="text/x-handlebars-template">
+
+            <fieldset>
+                <legend>Φίλτρα</legend>
+                <input type="radio" id="radio_all" name="filter" value="all products" checked
+                    data-subcategory-name = "all">
+                <label for="radio_all">All Products</label>
+                {{#each this}}
+                    <input type="radio" id="radio_{{this.title}}" name="filter" value="{{this.title}}"
+                        data-subcategory-name = {{this.title}}>
+                    <label for="radio_{{this.title}}">{{this.title}}</label>
+                {{/each}}
+            </fieldset>
+        </script>
+
+        <main>
+            <h1>All Products of Category</h1>
+            <div id="filters"> </div>
+            <div id="output_products"> </div>
+
+            <div id="functionalities">
+                
+                <span id="products_in_cart">
+                    <p id="total_products_in_cart">0</p>
+                    <img src="images/cart.png" alt="">
+                </span>
+                
+                <button id="display_cart_button">Display Cart</button>
+                <button id = "login_button">Login</button>  
+            </div>
+        
+            <form action="/users/login" method="post" id="login_form">
+
+                <div class="container">
+                    
+                    <img src="../images/avatar.png" alt="avatar">
+                    
+                    <label for="user_name">Username</label>
+                    <input type="text" name="user-name" id="user_name">
+        
+                    <label for="user_password">Password</label>
+                    <input type="password" name="user-password" id="user_password">
+
+                    <input id="login_submit_button" type="submit" value ="Login">
+
+                    <span id="login-status"></span>
+
+                </div>
+
+            </form>
+
+        </main>
+        
+    </body>
+
+</html>

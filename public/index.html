@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/index.css">
+
+        <script src="/js/index.js" type="text/javascript"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    </head>
+
+    <body>
+        <h1>Explore our Categories</h1>
+
+        <script id="categories_template" type="text/x-handlebars-template">
+
+            {{#each this}}
+            <article class="category">
+                <a href="category.html" class ="category-link" data-category-id="{{this.id}}">
+                    <img src="{{this.img_url}}" alt="image">
+                </a>
+                <p>{{this.title}}</p>
+                <p>code {{this.id}}</p>
+            </article>
+            {{/each}}
+            
+        </script>
+
+        <main>
+            <div id="output_categories"> </div>
+        </main>
+        
+    </body>
+
+</html>
